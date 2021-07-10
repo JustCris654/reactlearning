@@ -1,9 +1,12 @@
-import {FaTimes, FaTimesCircle} from "react-icons/all";
+import { FaTimesCircle} from "react-icons/all";
 
 const Task = ({task, onDelete, onToggle}) => {
 
+    //className={task.reminder?'task reminder':'task'}
     return (
-        <div className={task.reminder?'task reminder':'task'} onDoubleClick={() =>onToggle(task.id)}>
+        <div
+             className={`task ${task.reminder?'reminder':''}`}
+             onDoubleClick={() =>onToggle(task.id)}>
             <h3>{task.text} <FaTimesCircle
                 style={{
                     color: 'red',

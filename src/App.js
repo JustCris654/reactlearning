@@ -4,6 +4,7 @@ import {useState} from "react";
 //import other components to be used as HTML tags
 import Header from './components/Header';
 import Tasks from "./components/Tasks";
+import AddTask from "./components/AddTask";
 
 const App = () => {
 
@@ -28,6 +29,15 @@ const App = () => {
         }
     ]);
 
+    //Add task
+    const addTask = (task) => {
+        const id = Math.max(...tasks.map(a => a.id)) + 1;
+        const newTask = {
+            id, ...task
+        }
+        setTasks([...tasks, newTask]);
+    }
+
     //Delete task
     const deleteTask = (id) => {
         //filter out the task with the id passed on the function
@@ -45,6 +55,7 @@ const App = () => {
     return (
         <div className="container">
             <Header title='Hello'/>
+            <AddTask onAdd={addTask}/>
             {tasks.length > 0 ?
                 <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder}/> :
                 'No tasks to show'}
